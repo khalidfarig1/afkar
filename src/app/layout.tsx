@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import Link from "next/link";
 import { HeaderNav } from "@/components/HeaderNav";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-arabic" });
@@ -24,9 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         <main className="max-w-5xl mx-auto px-5 py-10">{children}</main>
-        <footer className="max-w-5xl mx-auto px-5 py-10 text-sm text-black/50 border-t border-black/10 mt-20">
-          صُنع بحبّ للسوق العربي · {new Date().getFullYear()}
-        </footer>
+        <Footer />
       </body>
     </html>
   );
