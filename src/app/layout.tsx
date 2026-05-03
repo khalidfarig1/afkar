@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import Link from "next/link";
+import { HeaderNav } from "@/components/HeaderNav";
 import "./globals.css";
 
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-arabic" });
@@ -19,11 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/" className="text-xl font-bold tracking-tight">
               أفكار<span className="text-accent">.</span>
             </Link>
-            <nav className="flex gap-5 text-sm text-black/70">
-              <Link href="/" className="hover:text-ink">فكرة اليوم</Link>
-              <Link href="/archive" className="hover:text-ink">الأرشيف</Link>
-              <Link href="/about" className="hover:text-ink">عن الموقع</Link>
-            </nav>
+            <HeaderNav />
           </div>
         </header>
         <main className="max-w-5xl mx-auto px-5 py-10">{children}</main>

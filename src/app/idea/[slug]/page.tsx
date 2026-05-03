@@ -1,19 +1,26 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getAllIdeas, getIdeaBySlug } from "@/lib/ideas";
+import { getAllIdeas, getIdeaBySlug, getLatestIdea } from "@/lib/ideas";
 import { ScoreBar } from "@/components/ScoreBar";
+import { Paywall } from "@/components/Paywall";
+import { getCurrentUser, getActiveSubscription } from "@/lib/supabase-server";
 
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  const ideas = await getAllIdeas();
-  return ideas.map((i) => ({ slug: i.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function IdeaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const idea = await getIdeaBySlug(slug);
   if (!idea) notFound();
+
+  const latest = await getLatestIdea();
+  const isLatest = idea.id === latest.id;
+
+  if (!isLatest) {
+    const user = await getCurrentUser();
+    const sub = user ? await getActiveSubscription(user.id) : null;
+    const isSubscribed = sub?.status === "active" || sub?.status === "trialing";
+    if (!isSubscribed) return <Paywall user={!!user} />;
+  }
 
   return (
     <article className="max-w-3xl">
