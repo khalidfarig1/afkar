@@ -22,12 +22,23 @@ export default async function AccountPage() {
 
         <Section title="الاشتراك">
           {isSubscribed ? (
-            <div className="space-y-2">
-              <p className="font-semibold text-accent">نشط</p>
-              <p className="text-sm text-black/60">
-                {sub?.cancel_at_period_end
-                  ? `ينتهي في ${sub.current_period_end ? new Date(sub.current_period_end).toLocaleDateString("ar-SA") : "—"}`
-                  : `يتجدّد في ${sub?.current_period_end ? new Date(sub.current_period_end).toLocaleDateString("ar-SA") : "—"}`}
+            <div className="space-y-3">
+              <div>
+                <p className="font-semibold text-accent">نشط</p>
+                <p className="text-sm text-black/60">
+                  {sub?.cancel_at_period_end
+                    ? `ينتهي في ${sub.current_period_end ? new Date(sub.current_period_end).toLocaleDateString("ar-SA") : "—"}`
+                    : `يتجدّد في ${sub?.current_period_end ? new Date(sub.current_period_end).toLocaleDateString("ar-SA") : "—"}`}
+                </p>
+              </div>
+              <a
+                href="/api/portal"
+                className="inline-block px-4 py-2 rounded-lg border border-black/15 text-sm font-semibold hover:border-accent hover:text-accent transition"
+              >
+                إدارة الاشتراك ←
+              </a>
+              <p className="text-xs text-black/40">
+                للإلغاء، تحديث طريقة الدفع، أو عرض الفواتير.
               </p>
             </div>
           ) : (
