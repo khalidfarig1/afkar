@@ -2,6 +2,8 @@
 
 Arabic-first alternative to ideabrowser.com — a daily AI-generated startup idea targeting the MENA market, with full RTL UI.
 
+🚀 **Live:** https://afkar-khalidfarig1s-projects.vercel.app
+
 ## Stack
 - Next.js 15 (App Router) + Tailwind
 - Supabase (Postgres) for idea storage — optional, falls back to sample data
