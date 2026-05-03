@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { background: #fafaf7; color: #0a0a0a; }
+
+.prose-ar p { line-height: 1.95; margin-bottom: 1rem; }
+.prose-ar h2 { font-size: 1.25rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.prose-ar ul { list-style: disc; padding-inline-start: 1.5rem; margin-bottom: 1rem; }
+.prose-ar li { margin-bottom: 0.35rem; }
